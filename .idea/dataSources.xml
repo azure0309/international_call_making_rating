@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
+    <data-source source="LOCAL" name="Dataware House" uuid="16f7ef02-d8da-40b0-98b6-0126928312e4">
+      <driver-ref>oracle</driver-ref>
+      <synchronize>true</synchronize>
+      <auto-commit>false</auto-commit>
+      <jdbc-driver>oracle.jdbc.OracleDriver</jdbc-driver>
+      <jdbc-url>jdbc:oracle:thin:@ UFMS</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="TNSADMIN_DIR" value="C:/oracle/product/11.2.0/client_1/network/admin/sample" />
+      </jdbc-additional-properties>
+    </data-source>
+  </component>
+</project>
