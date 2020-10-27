@@ -32,8 +32,8 @@ class Call(object):
 
 my_country = Country('Mongolia', '976', '0.2')
 description = my_country.describe_country()
-print(description)
+# print(description)
 
 my_call = Call('97689118432', '0088656238974', 'success', 120)
 information = my_call.describe_call()
-print(information)
+# print(information)
