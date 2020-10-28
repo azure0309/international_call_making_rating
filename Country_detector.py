@@ -1,6 +1,7 @@
 from basic import Country, Call
 import connect_ufms
 import pandas as pd
+import csv
 
 
 class Connection_to_UFMS():
@@ -96,9 +97,9 @@ def get_number_from_traffic():
 	return select_number
 
 
-class B_Number_Split():
-	def __init__(self, b_number):
-		self.b_number = b_number
+# class B_Number_Split():
+# 	def __init__(self, b_number):
+# 		self.b_number = b_number
 
 
 # def describe_country(self):
@@ -109,6 +110,14 @@ class B_Number_Split():
 # 	}
 # 	return country_description
 
+def B_Number_Split(number):
+	if str(number[:3]) == '008':
+		print('IDD')
+	elif str(number[:4]) == '1668':
+		print('OD')
+	else:
+		print('Roaming')
 
-for i in get_number_from_traffic():
-	print(i)
+numbers = ['008654987', '1668987654321', '123456789']
+for i in numbers:
+	B_Number_Split(i)
