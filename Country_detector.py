@@ -1,4 +1,4 @@
-from basic import Country
+from basic import Country, Call
 import connect_ufms
 import pandas as pd
 
@@ -16,6 +16,16 @@ class Connection_to_UFMS():
 class Get_Country_Info(Country):
 	def __init__(self, country_code):
 		Country.__init__(self, country_code, country_code, country_code)
+
+	def __str__(self):
+		query = f"select COUNTRY from T_ALL_COUNTRY_CODE where COUNTRYCODE = '{self.country_code}'"
+		select_country_info = Connection_to_UFMS(query)
+		select_name = select_country_info.query_executor()
+
+		country_name = ''
+		for name in select_name:
+			country_name = name[0]
+		return country_name  # it returns string
 
 	def select_data_of_country(self):
 		query = f"select * from T_ALL_COUNTRY_CODE where COUNTRYCODE = '{self.country_code}'"
@@ -52,12 +62,14 @@ class Get_Country_Info(Country):
 		select_country_info = Connection_to_UFMS(query)
 		select_data = select_country_info.query_executor()
 
-		number_info = {
-			'Continent': '',
-			'Country': '',
-			'Country_code': '',
-			'Alpha2': '',
-			'Alpha3': ''}
+		number_info = \
+			{
+				'Continent': '',
+				'Country': '',
+				'Country_code': '',
+				'Alpha2': '',
+				'Alpha3': ''
+			}
 
 		for value in select_data:
 			continent.append(value[0])
@@ -72,12 +84,31 @@ class Get_Country_Info(Country):
 		number_info['Alpha2'] = alpha2
 		number_info['Alpha3'] = alpha3
 
-		return number_info  # it returns dictionary
+		framed_countries_info = pd.DataFrame(number_info)
+		return framed_countries_info  # it returns Dataframe
 
 
-hujaa = Get_Country_Info(82)
-hujaa_data = hujaa.select_all_countries()
-# print(hujaa_data)
+def get_number_from_traffic():
+	query = f"select * from T_CALL_INTL_WHOLESALE where INVITETIME > sysdate - 1 / 24"
+	select_country_info = Connection_to_UFMS(query)
+	select_number = select_country_info.query_executor()
 
-df = pd.DataFrame(hujaa_data)
-print(df)
+	return select_number
+
+
+class B_Number_Split():
+	def __init__(self, b_number):
+		self.b_number = b_number
+
+
+# def describe_country(self):
+# 	country_description = {
+# 		'name': self.name,
+# 		'country_code': self.country_code,
+# 		'b_number': self.b_number
+# 	}
+# 	return country_description
+
+
+for i in get_number_from_traffic():
+	print(i)

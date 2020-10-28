@@ -6,9 +6,9 @@ class Country(object):
 
 	def describe_country(self):
 		country_description = {
-			'Name': self.name,
-			'Country_code': self.country_code,
-			'Rating': self.rating
+			'name': self.name,
+			'country_code': self.country_code,
+			'rating': self.rating
 		}
 		return country_description
 
