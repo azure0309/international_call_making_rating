@@ -120,24 +120,33 @@ dict = {'China': 86, 'South Korea': 82, 'United States': 1, 'Japan': 81, 'South 
 
 japan_num = '1668827018394778'
 
-
 splitted_lst = []
 for number in numbers:
 	splitted_number = number_remove_prefix(number)
 	splitted_lst.append(splitted_number)
 
-print(splitted_lst)
+# print(splitted_lst)
 
+my_country_detector = Country_detector.Get_Country_Info(82)
+print(my_country_detector.select_data_of_country())
 
 for number in splitted_lst:
 	number_analyse = ''
 	for value in number:
 		number_analyse += value
-		# print(number_analyse)
-		for key, value in dict.items():
-			try:
-				if int(number_analyse) == value:
-					print(key)
-			except :
-				print(number_analyse)
+		my_country_detector = Country_detector.Get_Country_Info(number_analyse)
+		for i, k in my_country_detector.select_data_of_country().items():
+			if len(str(k)) != 0:
+				print(my_country_detector.select_data_of_country())
+# for key, value in dict.items():
+# 	try:
+# 		if int(number_analyse) == value:
+# 			print(key)
+# 	except :
+# 		print(number_analyse)
+my_country_detector = Country_detector.Get_Country_Info(82)
+for i, k in my_country_detector.select_data_of_country().items():
+	if len(str(k)) != 0:
+		print(i, k)
+# print(my_country_detector.select_data_of_country())
 
